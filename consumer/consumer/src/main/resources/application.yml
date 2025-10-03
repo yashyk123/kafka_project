@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: consumer
+  cloud:
+    stream:
+      function:
+        definition: processRiderLocation
+      bindings:
+        processRiderLocation-in-0:
+          destination: my-topic-new
+    kafka:
+      binder:
+        broker: localhost:9092
+
+#  kafka:
+#    consumer:
+#      bootstrap-servers: localhost:9092
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+#      group-id: rider-group  #####
+#      auto-offset-reset: earliest #####
+#      properties:
+#        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+#        spring.json.trusted.packages: "*"
+#        spring.json.value.default.type: com.consumer.consumer.Controller.RiderLocation
+server:
+  port: 8081
